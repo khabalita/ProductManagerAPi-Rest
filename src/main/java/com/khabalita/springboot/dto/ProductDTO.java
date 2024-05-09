@@ -8,4 +8,7 @@ public class ProductDTO {
     private String name;
     private String description;
     private String code;
+    private BrandDTO brandDTO;
+    private CategoryDTO categoryDTO;
+
 }

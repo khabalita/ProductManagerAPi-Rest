@@ -56,7 +56,6 @@ public class ProductService{
 
     public void deleteProduct(Long id) throws Exception{
         try{
-
             productRepository.deleteById(id);
         }catch (Exception e){
             throw new Exception ("No se pudo eliminar el producto" + e.getMessage());
@@ -76,23 +75,41 @@ public class ProductService{
     public List<ProductDTO> getAllProductsByName(String name) throws Exception {
         try{
             List<Product> products = productRepository.findByName(name);
-            List<ProductDTO> productDTOList = new ArrayList<>();
+            List<ProductDTO> productsDTOList = new ArrayList<>();
             for(Product product : products){
-                productDTOList.add(productMapper.ProductToProductDTO(product));
+                productsDTOList.add(productMapper.ProductToProductDTO(product));
             }
-            return productDTOList;
+            return productsDTOList;
         }catch(Exception e){
             throw new Exception("No se pudo devolver la lista de productos" + e.getMessage());
         }
 
     }
 
-    public List<Product> getAllProductsByBrand(Brand brand) throws Exception{
-        return List.of();
+    public List<ProductDTO> getAllProductsByBrand(Brand brand) throws Exception{
+        try{
+            List<Product> products = productRepository.findByBrand(brand);
+            List<ProductDTO> productsDTOList = new ArrayList<>();
+            for(Product product : products){
+                productsDTOList.add(productMapper.ProductToProductDTO(product));
+            }
+            return productsDTOList;
+        }catch(Exception e){
+            throw new Exception("No se pudo devolver la lista de productos" + e.getMessage());
+        }
     }
 
-    public List<Product> getAllProductsByCategory(Category category) throws Exception{
-        return List.of();
+    public List<ProductDTO> getAllProductsByCategory(Category category) throws Exception{
+        try{
+            List<Product> products = productRepository.findByCategory(category);
+            List<ProductDTO> productsDTOList = new ArrayList<>();
+            for(Product product : products){
+                productsDTOList.add(productMapper.ProductToProductDTO(product));
+            }
+            return productsDTOList;
+        }catch(Exception e){
+            throw new Exception("No se pudo devolver la lista de productos por categoria" + e.getMessage());
+        }
     }
 
 }

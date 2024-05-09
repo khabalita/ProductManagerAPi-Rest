@@ -16,6 +16,6 @@ public class Item extends Base{
     @Column(name = "quantity")
     private int quantity;
     @OneToOne
-    @Column(name = "product_id")
+    @Column(name = "product")
     private Product product;
 }
